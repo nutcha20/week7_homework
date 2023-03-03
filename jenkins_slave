@@ -1,1 +1,16 @@
-# your Home work
+pipeline {
+    agent any
+    parameters {
+        string(name: 'name', defaultValue: 'Tuchsanai', description: 'Enter your name')
+         string(name: 'age', defaultValue:'0', description: 'your age')
+    }
+    stages {
+        stage('Example') {
+            steps {
+                echo "Slave ${params.name} of ${params.age}"
+                sh "python3 myscript.py ${params.name} --age ${params.age}"
+                
+            }
+        }
+    }
+}
